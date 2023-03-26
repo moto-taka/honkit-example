@@ -8,9 +8,6 @@ on:
 jobs:
   build-and-deploy: 
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./docs
 
     steps:
       - name: Checkout
@@ -27,12 +24,14 @@ jobs:
         
 
       - name: Install and Build
+        working-directory: ./docs
         run: |
           npm install
           npm run build
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: _book
+          FOLDER: ./docs/_book
