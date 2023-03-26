@@ -6,11 +6,11 @@ on:
 
 
 jobs:
-  build-and-deploy:
+  build-and-deploy: 
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./docs
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -23,6 +23,8 @@ jobs:
         with:
           node-version-file: './docs/.node-version'
           cache: 'npm'
+          cache-dependency-path: './docs/package-lock.json'
+        
 
       - name: Install and Build
         run: |
