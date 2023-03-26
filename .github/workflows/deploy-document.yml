@@ -4,8 +4,13 @@ on:
     branches:
       - master
 
+
 jobs:
   build-and-deploy:
+    defaults:
+      run:
+        working-directory: ./docs
+        
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,8 +18,13 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
+
       - name: Install and Build
-        working-directory: ./docs
         run: |
           npm install
           npm run build
