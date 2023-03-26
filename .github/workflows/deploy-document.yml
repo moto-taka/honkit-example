@@ -10,8 +10,8 @@ jobs:
     defaults:
       run:
         working-directory: ./docs
-        
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version-file: '.node-version'
+          node-version-file: './docs/.node-version'
           cache: 'npm'
 
       - name: Install and Build
